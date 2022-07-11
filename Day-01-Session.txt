@@ -166,7 +166,26 @@ become_ask_pass = False
    $ ansible web -m shell -a "data ; uptime"
    
 ===========================================================================
-- 
+Login to Lab environment.
+- Login to your RDP  (You must be having Machine ID and password).
+
+ Note: Over VPN - not having access 
+ 
+- anydesk ID (shared) and password (labxx#ansible)
+ 
+  Use web application - https://go.anydesk.com (Provide your anydesk ID and password).
+ 
+ 
+ 
+  Where xx=01 
+  lab01-server01.lab.com (Controle node)
+  lab01.server02.lab.com (managed host - gitlab)
+  lab01.server03.lab.com 
+  lab01.tawer.lab.com   
+  
+ 
+  Login to labxx-server01 (labuser/redhat & root/redhat)
+    
    
    
    
