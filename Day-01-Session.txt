@@ -1,0 +1,209 @@
+
+- https://github.com/cprakash2118/Ansible-HCL-Project   
+
+- Product:- Red Hat Ansible Automation Platform:-
+   https://www.ansible.com/
+   - Training 
+   - Consulting.
+   
+- Ansible Training - https://www.ansible.com/products/training-certification?hsLang=en-us
+    RH294 
+  1) Ansible Engine (Basic of ansible, playbooks, conditional statement, handlders, errors, roles and ansible configuration).
+  2) Best practices - Adv Ansible & Ansible Tower - tags, plugin-filters, Configuration , Web based.
+  3) Network Automation.
+  
+=============================
+Lab environment-
+
+ Servers/VMs.
+ 
+ lab01-server01.lab.com  (control plan - Ansible installed) 
+ lab01-server02.lab.com  (Managed hosts - playbooks or Ad Hoc command deployed).
+ 
+ Note: gitlab will be implemeneed on server02 via Ansible.
+ 
+ lab01-server03.lab.com  (Managed hosts)
+ lab01-tower.lab.com     (Ansible Tower/Control plane)
+ lab01-server01.lab.com = gitlab.lab.com 
+ 
+ 
+ Users details:-
+ root/redhat 
+ devops-user-01  (passwordless both - Authentication & Athorization).
+ devops-user-02  (Passwordless Authentication but no passwordless Athorization).
+ devops-user-03  NO passwordless both - Authentication & Athorization).
+
+ myuser   - This user is you.
+ 
+ NOte: Package repo already configured.
+
+===============================
+Ansible can be used for below points:-
+1) Deploy applications 
+2) Configuration management
+3) Workflow automation 
+4) Network automation. 
+5) Ansible can be used to orchestrate the entire application life cycle
+ 
+
+1) Ansible is very Simple (YAML)
+2) Ansible is powerful.
+3) Agentless (ssh).
+
+- Ansible Automation Engine.
+  1) MOdules 
+  2) INventories 
+  3) Plugin
+  4) API 
+  
+ - INstalling ANsible - 
+ # yum install ansible -y (Only on Linux/UNIX OS). 
+ 
+ # ansible 
+ # ansible-doc 
+ # ansible-playbook 
+ # ansible-vault 
+ # ansible-galaxy 
+ etc 
+ 
+ 
+ - /etc/ansible/ansible.cfg   - Default COnfiguration file  
+ - /etc/ansible/hosts         - Default INventory
+
+ 
+ # Control plane (RHEL7)
+   - RHEL6/7 (By default Python 2.x) 
+   - RHEL8   (Python 3.x - python 2.x not supported in RHEL8 onwards).
+   - Windows machine (winRM)
+   - Network 
+ ==================
+ Ansible Version - 2.8
+ Configuration file - /etc/ansible/ansible.cfg 
+ python version - 3.6.8 (RHEL8)
+ Ansible python modules - Location 
+ 
+ 
+ 1) ANSIBLE_CONFIG  (This variable must be define, and ansible.cfg file must be available on mentioned location).
+ 2) ansible.cfg   (Current working dir)
+ 3) ~/.ansible.cfg or /home/user/.ansible.cfg 
+ 4) /etc/ansible/ansile.cfg 
+ =============================
+============================================
+
+
+
+
+ - Ansible installation (#yum install ansible -y)
+   Current node will be a control node - 
+
+ - Based on control node below commands/interface will be available.
+   $ ansible 
+   $ ansible-playbook 
+   $ ansible-doc 
+   $ ansible-vault 
+   $ ansible-galaxy 
+   
+   Note: 
+   $ ansible --help |less  (same way for all the commands).
+   
+ - Two main configuration and inventory files (defaults).
+   ansible.cfg   - /etc/ansible/ansible.cfg  
+   hosts         - /etc/ansible/hosts     
+   
+   Note: Same way we can create our own "ansible.cfg" & "inventory" files and customized.
+   
+   
+- Priority of "ansible.cfg"
+  1) ANSIBLE_CONFIG 
+  2) ansible.cfg 
+  3) ~/.ansible.cfg 
+  4) /etc/ansible/ansible.cfg 
+  
+- Inside ansible.cfg file 
+
+[defaults]
+inventory = ./inventory
+remote_user = devops 
+ask_pass = False 
+#ask_pass = True
+
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = False 
+#become_ask_pass = True   
+   
+   
+ 
+ - Inventory 
+   1) Static 
+   2) Dynamic 
+   
+   1) Static inventory - fixed setup
+      ini and yaml 
+	  
+	  vim inventory 
+	  [web]
+	  server[01:04].lab.com 
+	  
+	  [db]
+	  server[06:08].lab.com 
+	  
+	  [prod:childran]
+	  web
+	  db 
+ 
+ - NOw we have ansible.cfg & inventory files.
+ 
+ - Running ad hoc commands 
+   $ ansible web,db --list-all 
+   $ ansible web -m ping 
+   
+   $ ansible web -m command -a "data"   - It will execute 
+   $ ansible web -m command -a "data ; uptime"  (This will not work)
+   
+   $ ansible web -m shell -a "data ; uptime"
+   
+===========================================================================
+- 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+  
+  
