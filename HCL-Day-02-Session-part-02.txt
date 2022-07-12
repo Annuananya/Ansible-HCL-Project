@@ -150,20 +150,77 @@ Example - lab01
 
  #  # vim /etc/sudoers.d/devops-user-03
     devops-user-03    ALL=(ALL)       ALL
-	
+
+Note: Above tasks on labXX-server01 only (As of now additional servers not added to inventory).	
 	
  
 Phase-04####
-# su - devops-user-01
-$ ssh-keygen -t rsa  (Enter) Just lit enter .. enter
-$ ssh-copy-id lab01-server01.lab.com 
-or
-$ ssh-copy-id 172.168.115  (For HW signature - presess "yes" and enter password ( of the remote machine "172.168.115").
 
-Note:  *****
-- We need to perform for all the users.
-- using your account also try to do the same
-$ ssh-copy-id  lab01-server01.lab.com   (same processes)
+Step 1) Login to your labXX-server01 (labXX-server01.lab.com) via "labuser" only.
+Taking example - lab01
+
+
+$ whoami 
+labuser 
+$ su - (Switching to root account).
+# vim /etc/hosts
+172.168.1.41     lab01-server01.lab.com   lab01-server01
+172.168.1.151    lab01-server02.lab.com   lab01-server02
+172.168.1.152    lab01-server03.lab.com   lab01-server03
+
+:wq 
+
+
+Step 2) login to lab01-server02 as root and perform below tasks to setup the env.
+Authorization part.
+
+# ssh lab01-server02 
+# for x in {01..03}
+   do
+   useradd devops-user-${x}
+   echo redhat | passwd --stdin devops-user-${x}
+   done 
+   
+ # vim /etc/sudoers.d/devops-user-01 
+   devops-user-01    ALL=(ALL)      NOPASSWD: ALL
+
+ # vim /etc/sudoers.d/devops-user-02 
+   devops-user-02    ALL=(ALL)       ALL
+
+ #  # vim /etc/sudoers.d/devops-user-03
+    devops-user-03    ALL=(ALL)       ALL
+
+
+Step 3) 
+Authentication part.
+
+ # exit 
+ # su - devops-user-01 
+ $ whoami 
+ devops-user-01
+ $ ssh-keygen 
+ $ ssh-copy-id lab01-server02
+ NOte: Provide password one time only 
+ $ exit 
+ 
+ $ whoami 
+ labuser 
+ 
+ NOte: labuser is your enterprise ID, so setup passwordless auth.
+ 
+ $ ssh-keygen 
+ $ ssh-copi-id devops-user01@lab01-server02
+ NOte: Provide password one time only 
+ 
+
+
+
+NOte: Repete the same flow for labXX-server-03  
+#############
+
+
+
+
 
 
 
