@@ -1,0 +1,116 @@
+=============================
+Lab environment-
+
+####
+ Servers/VMs.
+ 
+ lab01-server01.lab.com  (control node - Ansible installed) 
+ lab01-server02.lab.com  (Managed hosts - playbooks or Ad Hoc command deployed). 
+ lab01-server03.lab.com  (Managed hosts)
+
+ lab01-tower.lab.com     (Ansible Tower/Control plane) 
+ Note: gitlab will be implemeneed on server02 via Ansible.
+
+#### 
+ Users details:-
+ root/redhat 
+ devops-user-01  (passwordless both - Authentication & Athorization).
+ devops-user-02  (Passwordless Authentication but no passwordless Athorization).
+ devops-user-03  NO passwordless both - Authentication & Athorization).
+
+ labuser   - This user is you.
+ 
+ NOte: Package repo already configured.
+===============================
+
+Point-01 - Install Ansible - Done 
+POint-02 - "ansible.cfg" file concepts 
+Point-03 - "inventory" file concepts.
+
+
+Phase-01 ###
+
+$ whoami 
+labuser 
+$ mkdir work
+$ cd work 
+$ pwd
+/home/labuser/work 
+$ touch ansible.cfg 
+$ vim ansible.cfg 
+[defaults]
+##
+inventory = ./inventory
+remote_user = devops-user-01 
+ask_pass = False 
+#ask_pass = True
+
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = False 
+#become_ask_pass = True 
+##
+
+
+
+Phase-02 ###
+Note: Creating inventory.
+##
+vim inventory_ip
+[myself]
+172.168.1.151
+
+[dev]
+172.168.1.152
+
+[test]
+172.168.1.153
+
+
+##
+vim inventory_name 
+[myself]
+lab01-server01.lab.com 
+
+[dev]
+lab01-server02.lab.com 
+
+[test]
+lab01-server03.lab.com 
+
+Note: This name based worked when DNS or local DNS enabled.
+To enable local DNS 
+
+$ su - 
+# vim /etc/hosts
+172.168.1.151    lab01-server01.lab.com   lab01-server01
+172.168.1.152    lab01-server02.lab.com   lab01-server01
+172.168.1.153    lab01-server03.lab.com   lab01-server01
+
+:wq
+
+$ hostname  -s
+lab01-server01
+$ hostname -d 
+lab.com
+$ hostname -f 
+lab01-server01.lab.com      
+
+NOte: **** Phase-01 and Phase-02 must be on conrole node.
+
+
+NOte: To set hostname:
+Login as root 
+# hostnamectl set-hostname lab01-server02.lab.com
+
+============
+
+
+
+
+
+
+
+
