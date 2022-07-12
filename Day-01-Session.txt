@@ -302,10 +302,11 @@ Note: all and ungrouped are by default with all inventory.
 
 
  Host name                 Purpose    Location   Environment
-servera.lab.example.com, Web server, Raleigh   Development
-serverb.lab.example.com, Web server, Raleigh   Testing
-serverc.lab.example.com, Web server, Mountain  View Production
-serverd.lab.example.com, Web server, London    Production
+ ==============================================================
+servera.lab.example.com, Webserver, Raleigh       Development
+serverb.lab.example.com, Webserver, Raleigh       Testing
+serverc.lab.example.com, Webserver, Mountain_View  Production
+serverd.lab.example.com, Webserver, London         Production
 
 
 
