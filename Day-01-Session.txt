@@ -185,6 +185,86 @@ Login to Lab environment.
   
  
   Login to labxx-server01 (labuser/redhat & root/redhat)
+  
+==================================
+Loged in to system:-
+
+User details:-
+labuser/redhat 
+root/redhat 
+
+Note: ONly two repose (Additional & mrepo), rest all repo please move to some other backup location
+
+# cd /etc/yum.repos.d/
+#mkdir /root/bkp
+#mv epe* /root/bkp
+# pwd
+/etc/yum.repos.d/
+# ls
+mrepo.repo additional_ansible.repo 
+# yum install ansible -y 
+# exit 
+
+$whoami 
+labuser
+
+$ ansible --version 
+$ mkdir work 
+$ cd work 
+$ touch ansible.cfg 
+$ ansible --version 
+
+Note: Ansible Configuration file changed, Now your current "ansible.cfg"  file will be considered.
+
+1) ANSIBLE_CONFIG 
+$ export ANSIBLE_CONFIG=/var/tmp/ansible.cfg   (Variable defined)
+$ ansible --version 
+Note: NO changes 
+$ touch /var/tmp/ansible.cfg     (ansible.cfg file must be present in the mentioned location).
+
+$ ansible --version 
+
+Note: Now your file will be considered (1st priority).
+
+
+2) Current "ansible.cfg" file - It mean "ansible.cfg" file must be present in your PWD.
+$ pwd
+/home/labuser/work 
+$ touch ansible.cfg 
+$ ansible --version 
+
+No changes, still "/var/tmp/ansible.cfg" having high priority.
+
+To use your current "ansible.cfg" file then remove priory one "1st"
+$ unset ANSIBLE_CONFIG 
+$ env | grep ANSIBLE
+$ ansible --version 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
     
    
    
