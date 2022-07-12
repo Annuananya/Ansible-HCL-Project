@@ -242,9 +242,82 @@ $ env | grep ANSIBLE
 $ ansible --version 
 
 
+3) ".ansible.cfg" file must be in user's home dir (/home/labuser/).
+    Expected Location - /home/labuser/.ansible.cfg 
+
+   $ touch /home/labuser/.ansible.cfg 
+   $ pwd - You should not have "ansible.cfg" in your current working dir.
+
+4) /etc/ansible/ansible.cfg (if 1st,2nd and 3rd priority not valid).
+
+================
+vim ansible.cfg 
+[defaults]
+inventory = ./inventory
+
+
+ What is inventory option in ansible.cfg file.
+ 
+$vim inventory 
+ [hostgroup]
+ server name 
+ ip address
+
+Eample 
+$ vim inventory
+ [prod_book_as]
+ phxbookpas01.lab.example.com
+ phxbookpas02.lab.example.com
+ phxbookpas03.lab.example.com
+ phxbookpas04.lab.example.com 
+ 
+[prod_book_db]
+phxbookpdb01.lab.example.com
+phxbookpdb02.lab.example.com
+
+
+[pord_payment_as]
+phxpaypas[01:10].lab.example.com 
+
+
+[dev_payment_as]
+blrpaydas[01:04].lab.example.com 
+
+[dev_pay_db]
+blrpayddb[01:02].lab.example.com 
 
 
 
+-Default inventory file - /etc/ansible/host
+================================
+ansible host_group --list-hosts
+
+ansible all --list-hosts
+ansible ungrouped --list-hosts 
+
+Note: all and ungrouped are by default with all inventory.
+
+
+==============
+
+
+ Host name                 Purpose    Location   Environment
+servera.lab.example.com, Web server, Raleigh   Development
+serverb.lab.example.com, Web server, Raleigh   Testing
+serverc.lab.example.com, Web server, Mountain  View Production
+serverd.lab.example.com, Web server, London    Production
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 
