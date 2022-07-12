@@ -309,6 +309,35 @@ serverc.lab.example.com, Webserver, Mountain_View  Production
 serverd.lab.example.com, Webserver, London         Production
 
 
+vim inventory
+
+[Webserver]
+server[a:d].lab.example.com
+
+[Raleigh]
+server[a:b].lab.example.com
+
+[Mountain_View]
+serverc.lab.example.com
+
+[London]
+serverd.lab.example.com
+
+[Development]
+servera.lab.example.com
+
+[Testing]
+ serverb.lab.example.com
+ 
+ [Production]
+server[c:d].lab.example.com
+
+===========================================
+
+
+
+
+
 
 
 
