@@ -107,6 +107,63 @@ Login as root
 
 ============
 
+ Phase-03###
+
+ Users details:-
+ root/redhat 
+ devops-user-01  (passwordless both - Authentication & Athorization).
+ devops-user-02  (Passwordless Authentication but no passwordless Athorization).
+ devops-user-03  NO passwordless both - Authentication & Athorization).
+
+ labuser   - This user is you.
+
+Example - lab01 
+
+ $ hostname 
+ lab01-server01.lab.com
+ or 
+ # hostname 
+ lab01-server01.lab.com
+ # exit 
+ $ whoami
+ labuser 
+ 
+ $ hostname -s 
+  lab01-server01
+ $ hostname -d 
+  lab.com
+ $ hostname -f 
+ lab01-server01.lab.com
+ 
+ $ su - (password - redhat)
+ # for x in {01..03}
+   do
+   useradd devops-user-${x}
+   echo redhat | passwd --stdin devops-user-${x}
+   done 
+   
+ # vim /etc/sudoers.d/devops-user-01 
+ devops-user-01    ALL=(ALL)      NOPASSWD: ALL
+
+ # vim /etc/sudoers.d/devops-user-02 
+  devops-user-02    ALL=(ALL)       ALL
+
+ #  # vim /etc/sudoers.d/devops-user-03
+    devops-user-03    ALL=(ALL)       ALL
+	
+	
+ 
+Phase-04####
+# su - devops-user-01
+$ ssh-keygen -t rsa  (Enter) Just lit enter .. enter
+$ ssh-copy-id lab01-server01.lab.com 
+or
+$ ssh-copy-id 172.168.115  (For HW signature - presess "yes" and enter password ( of the remote machine "172.168.115").
+
+Note:  *****
+- We need to perform for all the users.
+- using your account also try to do the same
+$ ssh-copy-id  lab01-server01.lab.com   (same processes)
 
 
 
