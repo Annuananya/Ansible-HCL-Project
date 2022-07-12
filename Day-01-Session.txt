@@ -202,6 +202,7 @@ Note: ONly two repose (Additional & mrepo), rest all repo please move to some ot
 /etc/yum.repos.d/
 # ls
 mrepo.repo additional_ansible.repo 
+# cp -v /tmp/additional_repo,repo /etc/yum.repos.d/
 # yum install ansible -y 
 # exit 
 
