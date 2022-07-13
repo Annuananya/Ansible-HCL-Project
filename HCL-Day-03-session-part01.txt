@@ -1,0 +1,37 @@
+
+
+ - Login as labuser to my contole node (eg:- lab17-server01)
+    $ whoami ; uname -n 
+ - Login to labXX-server02 as labuser and the switch to root user.
+    $ whoami 
+	$ su - 
+ - Create all required users (devops-user-01/02/03).	
+	
+	# for x in {01..03}
+	  do
+	  useradd devops-user-${x}
+	  echo redhat | passwd --stdin devops-user-${x}
+	  done 
+  - Provide sudo access as per requirment.
+  
+  To be continue (in sometime).
+    
+	
+=================================
+ Playbooks 
+ - User & groups 
+ 
+Playbook (YAML) 
+ Play01 
+  Task01 - Group name - unixadm 
+  Task02 - User name  -  user1 and Primary group for user1 is unixadm, uid=1111, and comm - XYZ
+
+ $ su - root 
+ # yum install git -y 
+ # su - devops-user-01 
+ $ git clone https://github.com/cprakash2118/Ansible-HCL-Project 
+ $ cd playbook
+ $ ansible-playbook <playbook_name> --syntax   (Syntax check)
+ $ ansible-playbook <playbook_name> -C         (Dry run)
+ $ ansible-playbook <playbook_name>            (Actual execution).
+ 
