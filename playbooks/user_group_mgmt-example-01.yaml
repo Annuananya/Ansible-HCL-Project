@@ -1,0 +1,16 @@
+---
+- name: Describtion about your play - First Play - User & Group Ops.
+  hosts: prod,dev 
+  tasks:
+    - name: Group addition.
+      group: 
+        name: unixadm
+        state: present
+
+    - name: User addition as per above group.
+      user:
+        name: user1
+        comment: Test user created via Ansible
+        uid: 1111
+        group: unixadm
+...
