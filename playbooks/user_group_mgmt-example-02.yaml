@@ -1,0 +1,15 @@
+---
+- name: Setup the required permission for Oracle DB installation on /opt/oracle.
+  hosts: prod,dev
+  tasks:
+    - name: Directory setup for Oracle DB installation on /opt/oracle.
+      file:
+         path: /opt/oracle
+         owner: user1
+         group: unixadm 
+         mode: '3770'
+         state: directory
+
+    - name: Verify the task.
+      shell: ls -ld /opt/oracle 
+...
