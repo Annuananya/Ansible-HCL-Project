@@ -35,3 +35,13 @@ Playbook (YAML)
  $ ansible-playbook <playbook_name> -C         (Dry run)
  $ ansible-playbook <playbook_name>            (Actual execution).
  
+ $ whoami ; uname -n 
+ labuser 
+ labXX-server01 
+ $ su - devops-user-01 
+ $ ssh-keygen -t rsa   (Enter and enter again)
+ $ ssh-copy-id labXX-server02   (provide password - redhat)
+ $ ssh-copy-id labXX-server03   (provide password - redhat)
+ 
+ NOte: Continue with user - devops-user-01 only (Playbook and execution).
+ 
