@@ -57,7 +57,45 @@ Playbook (YAML)
 	
 	mkdir /opt/oracle 
 	chmod 3770 
-	
+===========================
+ Application deployment - apache based application deployment.
+ Note: Application - index.html/index.php static page.
+
+ Playbook
+  play01
+   - setup yum repo 
+   - Clear unwanted repo 
+   - verify it 
+   - install apache 
+   - Start and enable apache service 
+   - Deploying index.html 
+   - INstall firewalld 
+   - Start and enabled firewalld 
+   - Adding port to firewalld    
+ play02 
+   - Verify application deployment via uri modules 
+   
+   
+ Note:  Modules used in playbook are as:-
+
+   shell
+   yum
+   service 
+   firewalld
+   uri 
+   
+   ansible-doc module_name - eg: ansible-doc uri 
+   
+   
+   
+   
+   
+   
+
+ 
+   
+ 
+ 
 	
  
  
