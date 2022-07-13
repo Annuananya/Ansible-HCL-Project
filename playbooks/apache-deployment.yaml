@@ -1,0 +1,64 @@
+---
+- name: Apache deployment - 1st play 
+  hosts: prod,dev
+  tasks:
+    - name: Setup yum repository.
+      copy:
+        src: mrepo.repo 
+        dest: /etc/yum.repos.d/mrepo.repo
+
+    - name: Verify  yum repository 
+      shell: mv /etc/yum.repos.d/epel* /root/ ; mv /etc/yum.repos.d/anydesk.repo /root/
+      ignore_errors: yes
+
+
+    - name: Verify  yum repository 
+      shell: yum clean all ; yum repolist 
+
+    - name: Apache installation.
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start and enable apache service.
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Deploy application - index.html 
+      copy:
+        content: "This is my web server - {{ ansible_fqdn }} \n" 
+        dest: /var/www/html/index.html
+
+    - name: Install firewalld.
+      yum: 
+        name: firewalld
+        state: present
+
+    - name: Start and enable firewalld service.
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+
+    - name: Adding port no - firewalld rules 
+      firewalld:  
+         service: http
+         immediate: yes
+         permanent: yes
+         state: enabled
+
+- name: Apache deployment varification.
+  hosts: myself
+  become: false 
+  tasks:
+    - name: Check deployment  
+      uri:
+        url: http://{{item}}
+        return_content: yes
+        status_code: 200
+      loop: 
+         - lab01-server02
+         - lab01-server03
+...
