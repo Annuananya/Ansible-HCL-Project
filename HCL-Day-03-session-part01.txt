@@ -45,3 +45,21 @@ Playbook (YAML)
  
  NOte: Continue with user - devops-user-01 only (Playbook and execution).
  
+ 
+ =======================
+ 
+ - task-01 
+    /opt/oracle 
+	ownership - user1 
+	group-ownership - unixadm 
+	permission - apply sticky bit and SGID (chmod 3770), others are not able to access.
+	
+	
+	mkdir /opt/oracle 
+	chmod 3770 
+	
+	
+ 
+ 
+ 
+ 
