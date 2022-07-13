@@ -1,0 +1,14 @@
+- list_of_package: 
+    - httpd
+    - firewalld
+- list_of_service:
+    - httpd
+    - firewalld
+- firewalld_port_add: 
+    - http
+    - https
+- src_yum_repo: mrepo.repo 
+- dest_yum_repo: /etc/yum.repos.d/mrepo.repo  
+- server_list:
+    - lab01-server02
+    - lab01-server03
