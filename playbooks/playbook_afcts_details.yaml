@@ -1,0 +1,8 @@
+---
+- name: playbook - 1st play 
+  hosts: dev,prod
+  tasks:
+   - name: Server infomration.
+     debug: 
+       msg: "Bios version - {{ ansible_bios_version }}, IP address - {{ ansible_enp1s0.ipv4.address}} {{ ansible_enp1s0.macaddress}}"
+...
