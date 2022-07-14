@@ -1,0 +1,24 @@
+---
+- name: Stat example
+  hosts: prod
+  tasks:
+    - name: Check -  directory 
+      stat: 
+        path: /var/www/html/hcl
+      register: output_apache
+
+    - name: display output 
+      debug:
+        var: output_apache 
+
+    - name: Create directory 
+      file:
+        path: /var/www/html/hcl
+        owner: apache
+        group: apache
+        state: directory
+        mode: '3770'
+      when: 
+           - output_apache.stat.exists == false 
+           - ansible_local.cprakash.general.service != httpd
+...
