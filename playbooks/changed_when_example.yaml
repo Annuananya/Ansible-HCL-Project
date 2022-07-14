@@ -1,0 +1,7 @@
+---
+- name: changed_when 
+  hosts: prod 
+  tasks:
+    - name: execution command 
+      shell: uptime
+      changed_when: false

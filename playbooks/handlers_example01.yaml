@@ -1,0 +1,30 @@
+---
+- name: Handler example - 1st play
+  hosts: prod 
+  force_handlers: yes
+  tasks:
+    - name: task01 
+      shell: uptime 
+      changed_when: false
+      notify: 
+        - apache restart
+        - haproxy reload
+
+    - name: task02
+      debug: 
+        msg: "This is my 2nd task."
+
+    - name: task03
+      debug: 
+        msg: "This is my 3rd task."
+      failed_when: true
+  handlers:
+    - name: apache restart
+      debug: 
+        msg: This is handlers - handler-01 
+    - name: haproxy reload 
+      debug: 
+        msg: This is handlers-02
+
+
+    

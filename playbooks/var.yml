@@ -10,5 +10,4 @@
 - src_yum_repo: mrepo.repo 
 - dest_yum_repo: /etc/yum.repos.d/mrepo.repo  
 - server_list:
-    - lab01-server02
-    - lab01-server03
+    - lab01-server02.lab.com

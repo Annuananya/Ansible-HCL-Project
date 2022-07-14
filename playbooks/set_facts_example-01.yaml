@@ -1,0 +1,26 @@
+---
+- name: set_fact example
+  hosts: prod 
+  tasks:
+
+    - set_fact:
+        kubernetes_version: "1.3"
+        cacheable: yes
+    - name: Display message 
+      debug:
+        msg: "This is kubernetes version on server - {{ kubernetes_version }}"
+
+    - name: Display message -02 
+      debug:
+        msg: "server02 - kubernetes version - {{ kubernetes_version }}"
+
+    - set_fact:
+         user_name: joe
+         user_uid: 11223
+    - name: User creation 
+      user:
+        name: "{{ user_name }}"
+        uid: "{{ user_uid }}"
+        state: present
+
+...
