@@ -1,0 +1,63 @@
+
+ - Playbooks & Ad hoc commands.
+ - Playbook - (Multiple tasks)
+ - Playbook - Multiple tasks and multiple play (2 plays in same playbook).
+ - Playbook - Variables 
+ 
+      vars:
+         variable defination.
+ 
+      vars_files:
+           include file as well.
+
+- Modules 
+    user, group, copy, yum, debug, uri, shell or command, 
+  NOte: Command module can not be able to execute scripts 
+
+- Managing secrets via ansible-vault 
+
+ $ ansible-vault --help 
+ $ ansible-vault create file_name   (Use key to encrypt)
+  
+   passwd: (This is the key to open this encrypted file).
+   confidential data 
+   - root_pass: redhat
+   - oracle_db_path=
+   
+ $ cat file_name   (this output is encrypted)
+ $ ansible-vault view file_name   (It will prompt for key - same key need to be used for any operation).
+ 
+ ####
+ rekey - want to change the key for file_name 
+ $ ansible-vault rekey file_name
+ 1st prompt - current-key 
+ 2nd-new    - new key 
+ 3rd        - confirmation.
+ 
+ 
+ #### When you encrypt the playbook.
+ $ansible-vault encrypt file_name-02.yml 
+ 1st-new    - new key 
+ 2nd        - confirmation.
+
+
+ ### When you execute the playbook.
+ $ ansible-playbook --help | grep vault 
+ $ ansible-playbook  file_name-02.yml --ask-vault-pass 
+  Prompt for key 
+  
+ $ Create vault password file (simple text file). 
+ $ vim myfile
+   asdkjhaskjdhaskj
+ $ ansible-playbook  file_name-02.yml --vault-password-file=myfile 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
