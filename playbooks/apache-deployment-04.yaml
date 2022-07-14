@@ -1,0 +1,68 @@
+---
+- name: Apache deployment - 1st play
+  hosts: prod, dev
+  vars_files:
+      - var.yml
+  tasks:
+    - name: Installing repositories.
+      copy:
+        src: "{{ src_yum_repo }}"
+        dest: "{{dest_yum_repo}}"
+
+    - name: Clear unwanted repositories.
+      shell: mv /etc/yum.repos.d/epel* /tmp/ ; mv /etc/yum.repos.d/anydesk* /tmp
+      ignore_errors: yes
+
+    - name: Verify the repo
+      shell: yum clean all ; yum repolist 
+      register: yum_output_verify
+
+    - name: Display output
+      debug:
+        var: yum_output_verify
+
+    - name: Yum repo status.
+      debug:
+        msg: "This repo working fine - Confirmed after testing"
+      #when: yum_output_verify.rc == 0 
+      #failed_when: yum_output_verify.rc == 0 
+      failed_when: yum_output_verify.rc != 0 
+
+    - name: Install required packages.
+      yum:
+        name: "{{ list_of_package }}"
+        state: present
+
+    - name: Start and enable all required services.
+      service: 
+        name: "{{ item }}"
+        state: started 
+        enabled: yes
+      loop: "{{ list_of_service }}"
+
+    - name: Deploying index.html application.
+      copy:
+        content: "This is my new web server - {{ ansible_fqdn }} \n"
+        dest: /var/www/html/index.html 
+  
+    - name: Adding port no - firewalld rules
+      firewalld:
+         service: "{{ item }}"
+         immediate: yes
+         permanent: yes
+         state: enabled
+      loop: "{{ firewalld_port_add }}"
+
+- name: Verify the deployment.
+  hosts: myself 
+  vars_files:
+     - var.yml
+  become: false 
+  tasks:
+    - name: Check deployment
+      uri: 
+         url: http://{{item}}
+         return_content: yes
+         status_code: 200
+      loop: "{{ server_list }}"
+...

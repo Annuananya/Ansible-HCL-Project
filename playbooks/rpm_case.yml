@@ -1,0 +1,17 @@
+---
+- name: rpm case 
+  hosts: prod
+  vars:
+     rpm_file:  tree-1.7.0-15.el8.x86_64.rpm 
+  tasks:
+    - name: copy rpm 
+      copy:
+        src: "{{ rpm_file }}"
+        dest: /tmp/
+    - name: install rpm
+      shell: rpm -ivh  /tmp/{{rpm_file }}
+      ignore_errors: yes
+
+    - name: Clearup
+      shell: rm -rf /tmp/{{rpm_file }}
+      ignore_errors: yes
