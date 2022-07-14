@@ -1,6 +1,6 @@
 ---
 - name: Apache deployment - 1st play
-  hosts: prod
+  hosts: ip
   force_handlers: yes
   vars_files:
      - var.yml 

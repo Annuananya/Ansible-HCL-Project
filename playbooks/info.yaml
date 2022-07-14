@@ -1,0 +1,15 @@
+  - group_list:
+           - {name: unixadm_grp, gid: 212110}
+           - {name: dbadm_grp, gid: 213110}
+           - {name: networkadm_grp, gid: 214110}
+           - {name: securityadm_grp, gid: 215110}
+           - {name: app1_grp, gid: 216110}
+  - user_list:
+           - {name: unixadm_grp, uid: 312110 , user_name: user01}
+           - {name: dbadm_grp, uid: 412110 , user_name: user02}
+           - {name: networkadm_grp, uid: 512110, user_name: user03}
+           - {name: securityadm_grp, uid: 612110 , user_name: user04}
+           - {name: app1_grp, uid: 712110, user_name: user05}
+         
+
+         

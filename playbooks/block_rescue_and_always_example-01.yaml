@@ -1,0 +1,37 @@
+---
+- name: Block, rescue and always 
+  hosts: prod 
+  tasks:
+   - name: Block part
+     block:
+       - name: Install abc software
+         yum:
+           #name: abc 
+           name: httpd
+           state: present 
+         register: install_output
+         ignore_errors: yes
+
+       - name: Start and enable abc service.
+         service:
+           name: httpd
+           #name: abc
+           state: started
+           enabled: yes
+         register: service_output
+     
+     rescue: 
+       - name: Display installation part
+         debug:
+           var: install_output
+
+       - name: Display service part
+         debug:
+           var: service_output
+
+     always:
+       - name: Display always output
+         debug:
+           msg: "validation"
+
+...

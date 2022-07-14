@@ -1,0 +1,26 @@
+---
+- name: User and Group mgmt
+  #hosts: prod 
+  hosts: all
+  vars_files:
+     - info.yaml 
+  tasks:
+     - name: Group addition.
+       group:
+         name: "{{ item.name }}"
+         gid: "{{ item.gid }}"
+         state: present
+       loop: "{{ group_list }}"
+       when: inventory_hostname in groups['dev']
+
+     - name: User addition.
+       user:
+         name: "{{item.user_name}}"
+         group: "{{ item.name }}"
+         uid: "{{ item.uid }}"
+         #password: "{{ 'redhat' | password_hash('sha512') }}"
+         password: "{{ 'redhat' | password_hash('sha256') }}"
+         state: present
+       loop: "{{user_list}}"
+       when: inventory_hostname in groups['dev']
+...

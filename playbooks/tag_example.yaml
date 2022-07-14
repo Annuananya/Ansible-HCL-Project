@@ -1,0 +1,22 @@
+---
+- name: Tags example 
+  hosts: all
+  tasks:
+    - name: "This is my 1st task-01"
+      debug:
+        msg: "This is my 1st task-01"
+      tags: [never, beta]
+      when: inventory_hostname in groups['dev']
+
+    - name: "This is my 2nd task-02"
+      debug:
+        msg: "This is my 2nd task-02"
+      tags: [never, alpha]
+      when: inventory_hostname in groups['dev']
+
+    - name: "This is my 3rd task-03"
+      debug:
+        msg: "This is my 3rd task-03"
+      tags: [never, beta]
+      when: inventory_hostname in groups['dev']
+...
