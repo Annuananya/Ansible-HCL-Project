@@ -1,6 +1,7 @@
 ---
 - name: Apache deployment using role
   hosts: all
+  serial: 2
   pre_tasks:
      - name: Pre-Checks taken 
        debug:

@@ -1,0 +1,12 @@
+---
+- name: Thhis is task-01 - from include 
+  debug: 
+    msg: "This is task-01 - from include"
+- name: Thhis is task-02  - from include
+  debug: 
+    msg: "This is task-02 - from include"  
+- name: Thhis is task-03  - from include
+  
+     debug: 
+    msg: "This is task-03 - from include"
+...

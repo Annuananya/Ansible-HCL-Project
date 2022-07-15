@@ -1,0 +1,16 @@
+---
+- name: Import example
+  hosts: prod 
+  tasks:
+    - name: task-01 
+      debug: 
+        msg: "This is task-01"
+
+
+    - name: task-03
+      debug: 
+        msg: "This is task-03"
+
+- name: Prepare the datbase server.
+  import_playbook: main-apache_deployment.yaml 
+...
