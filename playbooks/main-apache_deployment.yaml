@@ -1,0 +1,19 @@
+---
+- name: Apache deployment using role
+  hosts: all
+  pre_tasks:
+     - name: Pre-Checks taken 
+       debug:
+         msg: "Pre-Checks done"
+  roles:
+     - apache 
+
+  tasks:
+     - name: Postcheck  
+       debug:
+         msg: "Post-Checks done"
+  post_tasks:
+     - name: Validation done
+       debug: 
+         msg: Final validation.
+

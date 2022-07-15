@@ -1,0 +1,19 @@
+---
+- name: Implementing jinja2 concepts.
+  hosts: prod,dev 
+  vars:
+    - result:
+        AnsibleV1
+    - users:
+       - john
+       - tom 
+       - eric
+  tasks:
+    - name: This is tenplate file - /tmp/server-info.txt
+      template:
+        src: example.j2 
+        dest: /tmp/server-info.txt
+        owner: root
+        group: root
+        mode: '0770'
+

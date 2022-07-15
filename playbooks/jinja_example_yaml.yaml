@@ -1,0 +1,8 @@
+---
+- name: Display
+  hosts: prod 
+  tasks: 
+    - name: Display
+      shell: systemctl status httpd
+      resgiter: output 
+     

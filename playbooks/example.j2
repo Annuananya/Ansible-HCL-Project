@@ -1,0 +1,39 @@
+ ***************** Server info *************
+Server Name      =  {{ ansible_hostname }}
+FQ Domain Name   =  {{ ansible_fqdn }}
+Server IP Add    =  {{ ansible_enp1s0.ipv4.address }}
+Server H/w Add   =  {{ ansible_enp1s0.macaddress }}
+Bios version     = {{ ansible_bios_version }}
+{#, IP address - {{ ansible_enp1s0.ipv4.address}} {{ ansible_enp1s0.macaddress}}" #}
+
+##########################################
+{# for statement #}
+{% for myuser in users %} 
+   This is my user - {{ myuser }}
+{% endfor %} 
+##########################################
+{% if true %}
+ {{ result }}
+{% endif %}
+
+#######################################
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv XMODIFIERS
+AuthorizedKeysFile	.ssh/authorized_keys
+ChallengeResponseAuthentication no
+GSSAPIAuthentication yes
+GSSAPICleanupCredentials no
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+PasswordAuthentication yes
+PermitRootLogin yes
+PrintMotd no
+Subsystem	sftp	/usr/libexec/openssh/sftp-server
+SyslogFacility AUTHPRIV
+UsePAM yes
+X11Forwarding yes
+
+

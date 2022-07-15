@@ -1,0 +1,7 @@
+---
+# handlers file for apache
+- name: apache_reload
+  service:
+     name: "{{ apache_svc_name }}"
+     state: restarted
+...

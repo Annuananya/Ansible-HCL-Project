@@ -1,0 +1,4 @@
+---
+# vars file for apache
+ apache_pkg_name: httpd
+ apache_svc_name: httpd

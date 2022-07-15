@@ -1,0 +1,24 @@
+---
+# tasks file for firewall
+# tasks file for firewalld
+- name: Apache installation in progress ....
+  yum:
+   name: "{{ firewalld_pkg_name }}"
+   state: present
+    
+- name: Start and enable firewalld service ....
+  service:
+   name: "{{ firewalld_svc_name }}"
+   state: started
+   enabled: yes
+ 
+
+- name: Adding port no - firewalld rules
+  firewalld:
+    service: "{{ item }}"
+    immediate: yes
+    permanent: yes
+    state: enabled
+  loop: "{{ firewalld_port_add }}"
+ 
+

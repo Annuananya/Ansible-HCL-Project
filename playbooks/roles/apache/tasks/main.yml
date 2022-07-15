@@ -1,0 +1,44 @@
+---
+# tasks file for apache
+- name: Apache installation in progress ....
+  yum:
+   name: "{{ apache_pkg_name }}"
+   state: present
+
+- name: Start and enable apache service ....
+  service: 
+   name: "{{ apache_svc_name }}"
+   state: started
+   enabled: yes
+  ignore_errors: yes
+
+- name: Config change for apache env, Verify default DocumentRoot.
+  stat: 
+    path: /var/www/html/vhost/{{ ansible_hostname }}
+  register: stat_output
+
+- name: Create default documentRoot.
+  file:
+    path: /var/www/html/vhost/{{ ansible_hostname }}
+    owner: root
+    group: root
+    mode: '0755'
+    recurse: yes
+  when: stat_output.stat.exists == false 
+
+- name: Apache config changes.
+  template:
+    src: apache.j2
+    dest: /etc/httpd/conf.d/apache.conf 
+    owner: root
+    group: root
+    mode: '0644'
+
+  notify:
+     - apache_reload
+
+- name: Application  Deployment - index.html 
+  copy:
+    content: "This is my web user - {{ ansible_hostname }}"
+    dest: /var/www/html/vhost/{{ ansible_hostname }}/index.html
+...

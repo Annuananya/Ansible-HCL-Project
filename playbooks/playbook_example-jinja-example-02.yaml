@@ -1,0 +1,17 @@
+---
+- name: Implementing jinja2 concepts.
+  hosts: prod,dev 
+  tasks:
+
+    - name: Display output
+      shell: systemctl status sshd 
+      register: output
+
+    - name: This is tenplate file - /tmp/server-info.txt
+      template:
+        src: jinja03.j2
+        dest: /tmp/server-host.txt
+        owner: root
+        group: root
+        mode: '0770'
+
