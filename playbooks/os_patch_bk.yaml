@@ -1,0 +1,52 @@
+---
+- name: OS patch via Ansible 
+  hosts: dev
+  tasks:
+    - name: Setup repo for rhel8.2 
+      copy: 
+       src: mrepo-82.repo
+       dest: /etc/yum.repos.d/
+   
+
+ 
+    - name: Confirm the available kernel 
+      debug:
+        msg: Will use condition to verify the current and available kernel.
+
+    - name: Disable rhel8.1/other repo and enable only rhel8.2 repo 
+      debug:
+        msg: Verify this condition.
+
+    - name: INstall available kernel 
+      yum:
+       name: kernel
+       state: latest
+
+    - name: Reboot your server after kernel installation.
+      reboot:
+
+    - name: Hold the server for sometime.
+      shell: sleep 600
+
+    - name: Now validate the server is up and running with latest kernel.
+      debug:
+        msg: Set the condition to validate the latest kernel versoin.
+
+    - name: Apply the patches.
+      yum:
+       name: "*"
+       state: latest 
+
+    - name: Reboot your server after all patches installation.
+      reboot:
+ 
+    - name: Hold the server for sometime.
+      shell: sleep 600
+
+    - name: Now validation.
+      debug: 
+        msg: OS patch has been done.
+...
+
+
+

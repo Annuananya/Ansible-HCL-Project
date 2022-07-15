@@ -1,0 +1,11 @@
+[BaseOS-82]
+name = Red Hat Enterprise Linux 8.2 
+baseurl = http://172.168.1.31/repo/rhel8.2/BaseOS/
+gpgcheck = 0
+enabled = 1
+
+[AppStream-82]
+name = Red Hat Enterprise Linux 8.2 
+baseurl = http://172.168.1.31/repo/rhel8.2/AppStream/
+gpgcheck = 0
+enabled = 1

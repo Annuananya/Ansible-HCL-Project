@@ -1,0 +1,40 @@
+---
+- name: OS patch via Ansible 
+  hosts: dev
+  tasks:
+    - name: Setup repo for rhel8.2 
+      copy: 
+       src: mrepo-82.repo
+       dest: /etc/yum.repos.d/
+    - name: Clear the cashe 
+      shell: yum clean all
+   
+
+    - name: INstall available kernel 
+      yum:
+       name: kernel
+       state: latest
+ 
+
+    - name: Reboot your server after kernel installation.
+      reboot:
+
+    - name: Hold the server for sometime.
+      shell: sleep 20
+
+
+    - name: Apply the patches.
+      yum:
+       name: "*"
+       state: latest 
+
+    - name: Reboot your server after all patches installation.
+      reboot:
+ 
+    - name: Hold the server for sometime.
+      shell: sleep 60
+
+    - name: Now validation.
+      debug: 
+        msg: OS patch has been done.
+...
