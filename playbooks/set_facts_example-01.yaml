@@ -23,4 +23,10 @@
         uid: "{{ user_uid }}"
         state: present
 
+- name: 2nd play
+  hosts: dev
+  tasks:
+     - name: "Using set_fact"
+       debug:
+         msg: "This is 2nd play - {{ kubernetes_version }}"
 ...
