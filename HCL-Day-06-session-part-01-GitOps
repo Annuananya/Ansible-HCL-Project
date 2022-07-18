@@ -1,0 +1,78 @@
+
+ - labXX-server01.lab.com  - Control plane/node (Ansible - Tower)
+ - labXX-server02.lab.com  - GitLab 
+ 
+ # vim /etc/hosts
+  172.168.1.XY  gitlab.lab.com    gitlab
+  :wq 
+  
+  
+ $ whoami 
+ labuser 
+ $ git clone https://github.com/cprakash2118/Ansible-HCL-Project  
+ NOte if git is not installed then switch to root (su - root ; yum install git -y).
+ $ git push gitlab.lab.com  
+ project01/02/03/04/05 
+ 
+ GitOps - 
+ Source Code managed by DVCS (github or gitlab)
+ GitLab & ansible tower/AWX - intergartion.
+ 
+ 
+ 
+     1) Remote Repository (upstream)
+	 2) Local Repository
+	 3) Staging Area 
+	 4) Working Tree 
+ 
+ 
+  git repository 
+   HCL-projects (Main branch)
+    project01/02/03/04/05
+
+ Consider - project01 as of now (Working Tree).
+ Example: lab17-server01 / lab01-server02/03 
+    lab17-server01.lab.com  - Ansible/Tower or AWX server.
+	lab01-server02.lab.com  - GitLab 
+	Alias given to lab01-server02.lab.com is "gitlab.lab.com"
+
+(4th Step - Working tree)
+  $ git clone http://gitlab.lab.com/HCL-Projects 
+  $ cd Project01   
+
+(3rd Step - Staging Area)
+  NOte: Added some playbooks/roles and tasks, now from working tree to Staging area.
+  $ git add file_name-01 
+  $ git add file02 
+  or
+  $ git add .
+  
+(2nd step - Local repository)
+  $ git commit -m {update" 
+  
+1) Remote repository
+  $ git push 
+  
+  
+====================================================================================
+Git configration:-
+ $ git config --global  user.name 'Chandra Prakash'
+ $ git comfig --global user.email 'abc@lab.com'
+ $ git config --golobal push.default  simple 
+
+  
+  
+ $ git add 
+ $ git remove 
+ $ git rm 
+ $ git reset 
+ $ gir commit
+ $ git push 
+ 
+ 
+ Creating branch 
+ and pushing to remote repository 
+ Merging the two branches.
+ 
+ 
+ 
