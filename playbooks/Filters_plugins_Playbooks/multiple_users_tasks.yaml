@@ -1,0 +1,18 @@
+---
+- name: Mandatory example 
+  hosts: prod  
+  tasks:
+     - name:  Group   Creation 
+       group:
+         name: unix321
+         state: present
+
+     - name: User creation.
+       user:
+         name: "{{ item.name}}"
+         group: "{{ item.primary_grp | default(omit) }}"
+         group: "{{ item.sec_grp | default(omit) }}"
+       loop: 
+           - {name: john32145, primary_grp: unix321}
+           - {name: joy32145 , sec_grp: unix321}
+           - {name: eric32145}

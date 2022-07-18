@@ -1,0 +1,11 @@
+---
+- name: Data manipulation and extraction.
+  hosts: myself
+  tasks:
+     - name: COndition check for list.
+       debug: 
+         msg: "{{ [1,4,2,2] | unique |sort }} is eq ([1,2,4])"
+       when: "{{ [1,4,2,2] | unique |sort }} is eq ([1,2,4])"
+          #- "{{ [1,4,2,2,3] | unique |sort }} is eq ([1,2,4])"
+          
+ 

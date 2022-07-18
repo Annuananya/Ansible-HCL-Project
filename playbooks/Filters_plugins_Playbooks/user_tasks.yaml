@@ -1,0 +1,10 @@
+---
+- name: Mandatory example 
+  hosts: prod  
+  vars:
+     primary_grp_: unix123 
+  tasks:
+     - name: User creation.
+       user:
+         name: john123
+         group: "{{ primary_grp | default(omit) }}"

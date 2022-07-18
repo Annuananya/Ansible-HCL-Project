@@ -1,0 +1,10 @@
+---
+- name: Mandatory example 
+  hosts: myself 
+  vars:
+    my_default: Ansible
+  tasks:
+   - name: "This is an example of mandatory {{ my_value }}"
+     debug:
+       #msg: "{{ my_value | default(my_default, True) }}"
+       msg: "{{ my_value | default(my_default, True) }}"

@@ -1,0 +1,12 @@
+[myself]
+lab17-server01.lab.com
+
+
+[prod]
+lab01-server02.lab.com 
+
+[dev]
+lab01-server03.lab.com
+
+[ip]
+172.168.1.170

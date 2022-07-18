@@ -1,0 +1,9 @@
+---
+- name: Mandatory example 
+  hosts: myself 
+  vars:
+    my_value: Ansible
+  tasks:
+   - name: "This is an example of mandatory"
+     debug:
+       msg: "{{ my_value | mandatory }}"

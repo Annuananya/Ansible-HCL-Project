@@ -1,0 +1,21 @@
+---
+- name: Manipulating list example 
+  hosts: myself       
+  tasks:
+    - name: Display message
+      debug: 
+         #msg: "{{ [2,4,5,7,9 ]| reverse | list }}" 
+         msg: "{{ [2,3,4,9 ]| difference([2,8,9]) }}" 
+         #msg: "{{ [2,[12,[4,2],2],9 ]| flatten | unique }}" 
+         #msg: "{{ [2,[12,[4,15],27],9 ]| flatten }}" 
+         #msg: "{{ [12,4,15,27,9 ]| sort | reverse| list }}" 
+         #msg: "{{ [12,4,15,27,9 ]| sort | list }}" 
+        #msg: "{{ ['Ansible', 'Terraform', 'Puppet' ] | random }}"
+        #msg: "{{ [2,4,5,7,9 ]| sum }}"
+        #msg: "{{ [2,4,5,7,9 ]| last }}"
+        #msg: "{{ [2,4,5,7,9 ]| first }}"
+        #msg: "{{ [2,4,5,7,9 ]| length }}"
+      when: 
+        #- "{{ [2,4,5,7,9 ]| length is eq(5)}}"
+        #- "{{ [2,4,5,7,9 ]| first is eq(2)}}"
+       # - "{{ [2,4,5,7,9 ]| last is eq(9)}}"
