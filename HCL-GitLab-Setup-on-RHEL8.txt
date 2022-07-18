@@ -1,0 +1,51 @@
+GitLab installation 
+
+Note: Update /etc/hosts
+172.168.1.XXX   gitlab.lab.com     gitlab 
+
+:wq
+
+
+Step 1: Update system and Install Dependencies
+sudo yum -y update
+sudo yum -y install curl vim policycoreutils python3-policycoreutils
+
+If you want to install and use local mail server for sending notifications, then install Postfix:
+sudo yum -y install postfix
+
+
+Start and enable Postfix service after the installation.
+sudo systemctl enable postfix && sudo systemctl start postfix
+
+
+Step 2: Add the Gitlab CE Repository
+
+GitLab provides omnibus packages from a repository. These packages are compiled specifically for CentOS/RHEL.
+A script is provided for this purpose.
+
+curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
+
+
+Step 3: Install GitLab CE on CentOS 8 / RHEL 8
+Install GitLab CE by running the command:
+
+sudo yum install gitlab-ce
+Hit the y to begin installation of GitLab CE on CentOS 8 / RHEL 8.
+
+
+Step 4: Configure GitLab CE on CentOS 8 / RHEL 8
+Our installation is done, we can then do the GitLab configuration that works for our environment. The main configuration file for GitLab is located under /etc/gitlab/gitlab.rb
+
+sudo vi /etc/gitlab/gitlab.rb
+external_url 'http://gitlab.lab.com'
+
+
+sudo gitlab-ctl reconfigure
+
+If you have an active firewall, allow http, https and ssh services.
+sudo firewall-cmd --permanent --add-service={ssh,http,https} --permanent
+sudo firewall-cmd --reload
+
+
+Step 4: Access GitLab Web Console
+Open your browser and go to URL http://gitlab.lab.com to finish the installation of Gitlab.
