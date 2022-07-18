@@ -1,0 +1,29 @@
+---
+- package_list:
+     - git 
+     - gcc 
+     - gcc-c++ 
+     - nodejs 
+     - gettext 
+     - device-mapper-persistent-data 
+     - lvm2 
+     - bzip2 
+     - python3-pip 
+     - ansible
+
+- list_of_comm:
+     - dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+     - dnf install docker-ce --nobest -y
+
+- list_of_comm_for_docker_compose:
+     - alternatives --set python /usr/bin/python3
+     - pip3 install docker-compose
+
+- post_name:
+      - http
+      - https
+
+- final_steps:
+      - semanage port -a -t http_port_t -p tcp 8052
+      - setsebool -P httpd_can_network_connect 1 
+      - firewall-cmd --zone=public --add-masquerade --permanent

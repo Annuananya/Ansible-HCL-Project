@@ -1,0 +1,52 @@
+---
+- name: AWX installation and configuration on console plane
+  hosts: myself 
+  vars_files:
+      - var_awx.yaml
+  tasks:
+     - name: Enable epel for installation - required packges.
+       debug: 
+         msg: "wget the epel rpm ;  rpm -ivh epel-rpm.rpm"
+     
+     - name: Install required packages.
+       yum:
+        name: "{{ package_list }}"
+        state: present
+
+     - name: Docker repository need to be don, CE must be installed.
+       shell: "{{ item }}"
+       loop: "{{ list_of_comm }}" 
+
+     - name: Install Docker-compose tool and setup alternatives path for python 
+       shell: "{{ item }}"
+       loop: "{{ list_of_comm_for_docker_compose }}" 
+
+     - name: Ansible AWX clone request.
+       shell: git clone -b "17.1.0" https://github.com/cprakash2118/awx
+
+     - name: Execute the playbook env.
+       shell: openssl rand -base64 30
+       register: output_key_secret
+          
+     - name: Display-02
+       debug:
+         msg: "{{ output_key_secret.stdout }}"
+
+     - name: Create inventory file for installation - Define all required variable.
+       template:
+          src: inventory_template.j2
+          dest: /home/labuser/Ansible-HCL-Project/playbooks/AWX-installation/inventory
+       delegate_to: lab17-server01.lab.com 
+     
+     - name: Add firewall rules.
+       firewalld: 
+          service: "{{ item }}"
+          immediate: yes
+          permanent: yes
+          state: enabled
+       loop: "{{ post_name }}"
+
+     - name: Adding - Final steps
+       shell: "{{ item }}"
+       loop: "{{ final_steps }}"
+...

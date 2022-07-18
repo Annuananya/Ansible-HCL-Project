@@ -1,0 +1,22 @@
+---
+- name: example of copy secret 
+  hosts: myself 
+  tasks:
+     - name: execution
+       shell: openssl rand -base64 30
+       register: output_key_secret
+
+     - name: Display 
+       debug:
+         var: output_key_secret
+     - name: Display-02 
+       debug:
+         msg: "{{ output_key_secret.stdout }}"
+     - name: Create inventory file for installation - Define all required variable.
+       template:                           
+          src: inventory_template.j2       
+          dest: /home/labuser/Ansible-HCL-Project/playbooks/AWX-installation/inventory        
+          #dest: inventory        
+       changed_when: no         
+       delegate_to: lab17-server01.lab.com
+
