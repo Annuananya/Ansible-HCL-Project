@@ -1,0 +1,9 @@
+---
+- name: Lookup plugin example
+  hosts: prod 
+  vars:
+       hosts: "{{ lookup('file', '/etc/hosts')}}"
+  tasks: 
+     - name: Display 
+       debug: 
+        msg: "{{hosts}}"

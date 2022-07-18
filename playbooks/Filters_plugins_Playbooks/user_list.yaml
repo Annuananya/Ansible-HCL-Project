@@ -1,0 +1,15 @@
+- users_list:
+     - name: john 
+       first: John
+       middle: Micheal
+       last: Ansi
+
+     - name: smith
+       first: Steven 
+       middle: Franklin 
+       last: smith
+
+     - name: warner
+       first: david 
+       middle: Simon 
+       last: warner 
